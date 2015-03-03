@@ -2,6 +2,8 @@
 
 namespace xj\kohanaimage\classes;
 
+use yii\base\Exception;
+
 /**
  * Support for image manipulation using [Imagick](http://php.net/Imagick).
  *
@@ -21,12 +23,12 @@ class Kohana_Image_Imagick extends Image {
     /**
      * Checks if ImageMagick is enabled.
      *
-     * @throws  Kohana_Exception
+     * @throws  Exception
      * @return  boolean
      */
     public static function check() {
         if (!extension_loaded('imagick')) {
-            throw new Kohana_Exception('Imagick is not installed, or the extension is not loaded');
+            throw new Exception('Imagick is not installed, or the extension is not loaded');
         }
 
         return Image_Imagick::$_checked = TRUE;
@@ -36,7 +38,7 @@ class Kohana_Image_Imagick extends Image {
      * Runs [Image_Imagick::check] and loads the image.
      *
      * @return  void
-     * @throws  Kohana_Exception
+     * @throws  Exception
      */
     public function __construct($file) {
         if (!Image_Imagick::$_checked) {
@@ -276,7 +278,7 @@ class Kohana_Image_Imagick extends Image {
      *
      * @param   string  $extension  image extension: png, jpg, etc
      * @return  string  IMAGETYPE_* constant
-     * @throws  Kohana_Exception
+     * @throws  Exception
      */
     protected function _get_imagetype($extension) {
         // Normalize the extension to a format
@@ -294,7 +296,7 @@ class Kohana_Image_Imagick extends Image {
                 $type = IMAGETYPE_PNG;
                 break;
             default:
-                throw new Kohana_Exception('Installed ImageMagick does not support :type images', array(':type' => $extension));
+                throw new Exception('Installed ImageMagick does not support :type images', array(':type' => $extension));
                 break;
         }
 
