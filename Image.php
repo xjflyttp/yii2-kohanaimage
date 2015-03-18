@@ -3,7 +3,7 @@
 namespace xj\kohanaimage;
 
 use xj\kohanaimage\classes\Kohana_Image;
-use yii\base\ErrorException;
+use yii\base\Exception;
 
 abstract class Image extends Kohana_Image {
 
@@ -20,10 +20,10 @@ abstract class Image extends Kohana_Image {
      */
     public static function load($file = null, $driver = self::DRIVER_GD) {
         if (empty($file)) {
-            throw new ErrorException('File name can not be empty');
+            throw new Exception('File name can not be empty');
         }
         if (!realpath($file)) {
-            throw new ErrorException(sprintf('file is not exist: %s', $file));
+            throw new Exception(sprintf('file is not exist: %s', $file));
         }
         return static::factory($file, $driver);
     }

@@ -1,6 +1,7 @@
 <?php
 
 namespace xj\kohanaimage;
+
 use yii\base\Exception;
 
 class ImageHelper {
@@ -10,15 +11,16 @@ class ImageHelper {
      * @param string $file
      * @param int $width
      * @param string|null $saveAs
+     * @param int $quality 1-100
      * @return bool
      */
-    public static function resizeByWidth($file, $width, $saveAs = null) {
+    public static function resizeByWidth($file, $width, $saveAs = null, $quality = 75) {
         try {
             $image = Image::load($file);
             if (!$image) {
                 throw new Exception('load fail');
             }
-            $image->resize($width)->save($saveAs);
+            $image->resize($width)->save($saveAs, $quality);
         } catch (Exception $ex) {
             return false;
         }
@@ -30,15 +32,16 @@ class ImageHelper {
      * @param string $file
      * @param int $height
      * @param string|null $saveAs
+     * @param int $quality 1-100
      * @return bool
      */
-    public static function resizeByHeight($file, $height, $saveAs = null) {
+    public static function resizeByHeight($file, $height, $saveAs = null, $quality = 75) {
         try {
             $image = Image::load($file);
             if (!$image) {
                 throw new Exception('load fail');
             }
-            $image->resize(null, $height)->save($saveAs);
+            $image->resize(null, $height)->save($saveAs, $quality);
         } catch (Exception $ex) {
             return false;
         }
@@ -51,15 +54,16 @@ class ImageHelper {
      * @param int $width
      * @param int $height
      * @param string|null $saveAs
+     * @param int $quality 1-100
      * @return bool
      */
-    public static function resizeByWidthHeightWithShortestSide($file, $width, $height, $saveAs = null) {
+    public static function resizeByWidthHeightWithShortestSide($file, $width, $height, $saveAs = null, $quality = 75) {
         try {
             $image = Image::load($file);
             if (!$image) {
                 throw new Exception('load fail');
             }
-            $image->resize($width, $height)->save($saveAs);
+            $image->resize($width, $height)->save($saveAs, $quality);
         } catch (Exception $ex) {
             return false;
         }
@@ -73,15 +77,16 @@ class ImageHelper {
      * @param int $width
      * @param int $height
      * @param string $saveAs
+     * @param int $quality 1-100
      * @return boolean
      */
-    public static function resizeByWidthHeightWithKeepingRatio($file, $width, $height, $saveAs = null) {
+    public static function resizeByWidthHeightWithKeepingRatio($file, $width, $height, $saveAs = null, $quality = 75) {
         try {
             $image = Image::load($file);
             if (!$image) {
                 throw new Exception('load fail');
             }
-            $image->resize($width, $height, Image::INVERSE)->save($saveAs);
+            $image->resize($width, $height, Image::INVERSE)->save($saveAs, $quality);
         } catch (Exception $ex) {
             return false;
         }
@@ -95,15 +100,16 @@ class ImageHelper {
      * @param int $width
      * @param int $height
      * @param string $saveAs
+     * @param int $quality 1-100
      * @return boolean
      */
-    public static function resizeByWidthHeightForce($file, $width, $height, $saveAs = null) {
+    public static function resizeByWidthHeightForce($file, $width, $height, $saveAs = null, $quality = 75) {
         try {
             $image = Image::load($file);
             if (!$image) {
                 throw new Exception('load fail');
             }
-            $image->resize($width, $height, Image::NONE)->save($saveAs);
+            $image->resize($width, $height, Image::NONE)->save($saveAs, $quality);
         } catch (Exception $ex) {
             return false;
         }
