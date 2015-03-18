@@ -8,6 +8,14 @@ class ImageHelper {
 
     /**
      * 
+     * @return string
+     */
+    public static function getDriver() {
+        return Image::DRIVER_GD;
+    }
+
+    /**
+     * 
      * @param string $file
      * @param int $width
      * @param string|null $saveAs
@@ -16,7 +24,7 @@ class ImageHelper {
      */
     public static function resizeByWidth($file, $width, $saveAs = null, $quality = 75) {
         try {
-            $image = Image::load($file);
+            $image = Image::load($file, static::getDriver());
             if (!$image) {
                 throw new Exception('load fail');
             }
@@ -37,7 +45,7 @@ class ImageHelper {
      */
     public static function resizeByHeight($file, $height, $saveAs = null, $quality = 75) {
         try {
-            $image = Image::load($file);
+            $image = Image::load($file, static::getDriver());
             if (!$image) {
                 throw new Exception('load fail');
             }
@@ -59,7 +67,7 @@ class ImageHelper {
      */
     public static function resizeByWidthHeightWithShortestSide($file, $width, $height, $saveAs = null, $quality = 75) {
         try {
-            $image = Image::load($file);
+            $image = Image::load($file, static::getDriver());
             if (!$image) {
                 throw new Exception('load fail');
             }
@@ -82,7 +90,7 @@ class ImageHelper {
      */
     public static function resizeByWidthHeightWithKeepingRatio($file, $width, $height, $saveAs = null, $quality = 75) {
         try {
-            $image = Image::load($file);
+            $image = Image::load($file, static::getDriver());
             if (!$image) {
                 throw new Exception('load fail');
             }
@@ -105,7 +113,7 @@ class ImageHelper {
      */
     public static function resizeByWidthHeightForce($file, $width, $height, $saveAs = null, $quality = 75) {
         try {
-            $image = Image::load($file);
+            $image = Image::load($file, static::getDriver());
             if (!$image) {
                 throw new Exception('load fail');
             }
