@@ -99,7 +99,7 @@ abstract class Kohana_Image {
         }
 
         if (empty($file) OR empty($info)) {
-            throw new Exception('Not an image or invalid image: :file', array(':file' => Debug::path($file)));
+            throw new Exception('Not an image or invalid image: :file', array(':file' => $file));
         }
 
         // Store the image information
@@ -543,14 +543,14 @@ abstract class Kohana_Image {
 
         if (is_file($file)) {
             if (!is_writable($file)) {
-                throw new Exception('File must be writable: :file', array(':file' => Debug::path($file)));
+                throw new Exception('File must be writable: :file', array(':file' => $file));
             }
         } else {
             // Get the directory of the file
             $directory = realpath(pathinfo($file, PATHINFO_DIRNAME));
 
             if (!is_dir($directory) OR ! is_writable($directory)) {
-                throw new Exception('Directory must be writable: :directory', array(':directory' => Debug::path($directory)));
+                throw new Exception('Directory must be writable: :directory', array(':directory' => $directory));
             }
         }
 
