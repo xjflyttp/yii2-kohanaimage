@@ -8,7 +8,7 @@ use yii\base\Exception;
 abstract class Image extends Kohana_Image {
 
     const DRIVER_GD = 'GD';
-    const DRIVER_IMAGEMAGICK = 'ImageMagick';
+    const DRIVER_IMAGEMAGICK = 'Imagick';
 
     /**
      * instance image
